@@ -77,18 +77,18 @@ public class CEFConnectorConfiguration {
     private static ResourceBundle bundle;
     public static long getRetryMax() {
         try {
-             //if((!bundle.getString(RETRY_MAX).equals(""))&& (Long.parseLong(bundle.getString(RETRY_MAX))>-1)){
-             //   return Long.parseLong(bundle.getString(RETRY_MAX));
-             //}
-             //else{
-               // log.error("The configuration parameter "+RETRY_MAX+" has an invalid (negative number) value: "+bundle.getString(RETRY_MAX)+". Using default value of: "+DEFAULT_RETRY+".");
+             if((!bundle.getString(RETRY_MAX).equals(""))&& (Long.parseLong(bundle.getString(RETRY_MAX))>-1)){
+                return Long.parseLong(bundle.getString(RETRY_MAX));
+             }
+             else{
+                log.error("The configuration parameter "+RETRY_MAX+" has an invalid (negative number) value: "+bundle.getString(RETRY_MAX)+". Using default value of: "+DEFAULT_RETRY+".");
                 return DEFAULT_RETRY;
-             //}
+             }
         } catch (NumberFormatException e) {
             log.warn("The configuration parameter "+RETRY_MAX+" has an invalid (non-number) value: "+bundle.getString(RETRY_MAX)+". Using default value of: "+DEFAULT_RETRY+".");
             return DEFAULT_RETRY;
         } catch (java.util.MissingResourceException e) {
-            //log.error("The required configuration parameter "+RETRY_MAX+" is missing. Using default value of: "+DEFAULT_RETRY+".");
+            log.error("The required configuration parameter "+RETRY_MAX+" is missing. Using default value of: "+DEFAULT_RETRY+".");
             return DEFAULT_RETRY;
         } catch (Exception e) {
             String message = "Unexpected Error: "+e+".";
